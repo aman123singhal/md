@@ -351,8 +351,10 @@ After scrolling down we can see the versions of node JS, where all the version a
 First we have to install Podman if we don’t have podman in our system (commands for install Podman are given in Ques 4)
 
 Then give command to pull image (let's take example of prometheus )
-
+~~~
 $ podman pull prometheus 
+~~~
+
 ``````
 Trying to pull docker.io/bitnami/prometheus:latest...
 Getting image source signatures
@@ -365,8 +367,10 @@ d9c0c899d72b1387fb90006eb09f6f49c2b81e811335976f07b13fc7211e2018
 
 
 Now check the pulled image is available or not 
-
+~~~
 $ podman images
+~~~
+
 ``````
 REPOSITORY                    TAG         IMAGE ID      CREATED        SIZE
 localhost/prom                latest      05f26d548a48  3 minutes ago  248 MB
@@ -430,9 +434,9 @@ We can see in the image below that a repository is created with the name myrepo
 
 Command to give a tag to the image is given below.
 
-
+~~~
 $ podman tag localhost/prom:latest  docker.io/aman441/myrepo:AS
-
+~~~
 We are using ‘tag’ to give a tag to the image.
 ‘localhost/prom’ is the name of image 
  ‘latest’ is by default tag of the image 
@@ -441,8 +445,10 @@ We are using ‘tag’ to give a tag to the image.
 ‘AS’ is the new tag that we are giving.
 
 Now we will see that the tag is given or not with the command given below
-
+~~~
 $ podman images 
+~~~
+
 ``````
 REPOSITORY                    TAG         IMAGE ID      CREATED      SIZE
 localhost/prom                latest      05f26d548a48  3 hours ago  248 MB
@@ -454,13 +460,15 @@ docker.io/prom/prometheus     latest      620d5e2a39df  7 days ago   248 MB
 we can see in the above Output that tag is given with AS
 
 Now we will log in to the docker hub registry with the command 
-
+~~~
 $ podman login docker.io
-
+~~~
 
 After this we will push the image with the command 
-
+~~~
 $ podman push docker.io/aman441/myrepo:AS
+~~~
+
 ``````
 Getting image source signatures
 Copying blob a349935c9710 skipped: already exists  
@@ -499,8 +507,10 @@ As we can see that our image is successfully pushed with the tag  AS in the pict
 ## Ques 8. How can you view the running containers on your system with Podman, and what information is essential when managing containers? 
 
 To see the running containers on our system first we have to to terminal and write a command given below 
-
+~~~
 $ podman ps 
+~~~
+
 ``````
 CONTAINER ID  IMAGE                             COMMAND     CREATED      STATUS          PORTS                   NAMES
 b542b96d48df  docker.io/grafana/grafana:latest              3 hours ago  Up 3 hours ago  0.0.0.0:3001->3000/tcp  grafana
@@ -533,16 +543,20 @@ Container volumes are a critical feature in containerization platforms like Podm
 Volume is important when we mount the configuration file in the container, with the help of mounting we can see the automatic changes in configuration file in the container when we do any change in our system’s  configuration file
 
 We can create a volume with help of command given below
-
+~~~
 $ podman volume create my-volume
+~~~
+
 ``````
 my-volume
 ``````
 ‘my-volume’ is the name of the volume which we have to give while making a volume.
 
  To see the volume information we have to give command given below 
-
+~~~
 $ podman volume ls
+~~~
+
 ``````
 DRIVER      VOLUME NAME
 local       my-volume
@@ -627,9 +641,9 @@ Remember that container security is a multi-layered effort that involves both th
 
 We can list all the container with the help of command given below
 
-
+~~~
 $ podman ps 
-
+~~~
 
 
 Let's take a example of grafana container in the image below 
@@ -649,11 +663,15 @@ In this container we can see the container ID is ‘b542b96d48df‘  and Port no
 
 Let’s take an example of prometheus configuration file that we are mounting of prometheus container 
 First we have to make a directory with the name pomethues with the help of command given below:- 
+~~~
 $ mkdir prometheus 
+~~~
  
 Then we will pull image of prometheus with the help of command given below
-
+~~~
 $ podman search prometheus 
+~~~
+
 ``````
 INDEX       NAME                                                          DESCRIPTION                                      STARS       OFFICIAL    AUTOMATED
 docker.io   docker.io/bitnami/prometheus                                  Bitnami Docker Image for Prometheus              187                     [OK]
@@ -683,19 +701,24 @@ docker.io   docker.io/newrelic/nri-prometheus                             New Re
 ``````
 
 Then we will go into the directory with the help of command 
-
+~~~
 $ cd prometheus 
+~~~
 
 Now we will check the path of the prometheus directory with the command given below, because we need it to give in the run command of the prometheus container and for mounting the prometheus.yml file and docker directory in the container.
-
+~~~
 $ pwd
+~~~
+
 ``````
 /home/aman/prometheus
 ``````
 Now we have a path to our docker directory.
 And then pull the image of prometheus with the name pull docker.io/bitnami/prometheus 
-
+~~~
 $ podman pull docker.io/bitnami/prometheus 
+~~~
+
 ``````
 Trying to pull docker.io/bitnami/prometheus:latest...
 Getting image source signatures
@@ -706,8 +729,10 @@ Storing signatures
 d9c0c899d72b1387fb90006eb09f6f49c2b81e811335976f07b13fc7211e2018
 ``````
 Now we will check that our image is pulled or not with the command given below
-
+~~~
 $ podman images
+~~~
+
 ``````
 REPOSITORY                    TAG         IMAGE ID      CREATED         SIZE
 localhost/prom                latest      5b084601153e  41 minutes ago  248 MB
@@ -716,15 +741,16 @@ docker.io/grafana/grafana     latest      06e5d59b720d  2 days ago      407 MB
 docker.io/bitnami/prometheus  latest      d9c0c899d72b  7 days ago      266 MB
 ``````
 Now we make a configuration file in prometheus directory with the name prometheus.yml (.yml is the extension of the file it mandatory to add) with help of command below
-
+~~~
 $ touch prometheus.yml
-
+~~~
 
 Now we will run the container and mount  the local directory and the configuration file in the container. 
 
+~~~
 $ podman run -d -p 9090:9090 --name prometheus -v /home/aman/prometheus/prometheus.yml:/etc/prometheus/prometheus.yml \
 docker.io/bitnami/prometheus
-
+~~~
 
 In this command ‘run’ is to run the container
 ‘-d or --detach: This option tells Podman to run the container in the background (detached mode). When a container is detached, it doesn't take control of the current terminal, and you can continue using your shell.
@@ -742,7 +768,9 @@ In this command ‘run’ is to run the container
 
 After this we can go on the container with the help of command given below 
 
+~~~
 $ podman exec -it -u root prometheus bash 
+~~~
 
 In this command ‘exec’ stands for execute a new process in the terminal
 -it stands for 
@@ -779,7 +807,10 @@ Let’s take an example of an alert manager container that I have already made a
 I am using the command to stop alertmanager container because i have the container if we want to create a container of alertmanager we have to the commands given below
 First we will search image of alert manager with the command given below and select the image that we want to pull
 
+~~~
 $ podman search alertmanager
+~~~
+
 ``````
 INDEX       NAME                                                              DESCRIPTION                                      STARS       OFFICIAL    AUTOMATED
 docker.io   docker.io/bitnami/alertmanager                                    Bitnami Docker Image for Alertmanager            10                      [OK]
@@ -809,8 +840,10 @@ docker.io   docker.io/nopp/alertmanager-webhook-telegram                      Al
 ``````
 
 Now we will pull that image with the command :- 
-
+~~~
 $ podman pull docker.io/prom/alertmanager
+~~~
+
 ``````
 Trying to pull docker.io/prom/alertmanager:latest...
 Getting image source signatures
@@ -827,8 +860,10 @@ Storing signatures
 ``````
 
 After this we will run the container by the command given below:- 
-
+~~~
 $ podman run -d -p 9093:9093 --name alertmanager docker.io/prom/alertmanager
+~~~
+
 `````
 e0d7fc09a237a308deb2b5e43e6db382b9678041d16731a4fe0d37d03a2e1bb0
 ``````
@@ -846,15 +881,19 @@ In this command ‘run’ is to run the container
 
 
 
-
+~~~
 $ podman stop alertmanager 
+~~~
+
 `````
-podman stop alertmanager 
+$ podman stop alertmanager 
 `````
 As we can see in this previous picture that there is no running container of alertmanager.
 If we want to see the stop container we can use the command given below.
-
+~~~
 $ podman ps -a 
+~~~
+
 ``````
 CONTAINER ID  IMAGE                                COMMAND               CREATED             STATUS                     PORTS                   NAMES
 b542b96d48df  docker.io/grafana/grafana:latest                           6 hours ago         Up 6 hours ago             0.0.0.0:3001->3000/tcp  grafana
