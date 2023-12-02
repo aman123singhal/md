@@ -93,7 +93,7 @@ Above command is used to install podman.
 We are taking an example of grafana container :- 
 
 First we will check in our /registries.conf file that we have       “ unqualified-search-registries = ["docker.io", "quay.io"] ”
- line or not, like you can see in the given image below
+ line or not, like you can see in the output given below
 
 #### We will use the command :-
 ~~~
