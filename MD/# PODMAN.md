@@ -1,6 +1,6 @@
 # PODMAN
 
-**OS version** - 22.04
+**OS version** - ubuntu 22.04
 
 **PODMAN version** - 3.4.4
 
