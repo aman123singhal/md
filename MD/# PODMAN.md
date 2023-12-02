@@ -1,8 +1,8 @@
 # PODMAN
 
-OS version - 22.04
+**OS version** - 22.04
 
-PODMAN version - 3.4.4
+**PODMAN version** - 3.4.4
 
 ## Ques1 -What is a container, and how does it differ from a virtual machine?
 
