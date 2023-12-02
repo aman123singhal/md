@@ -64,9 +64,9 @@ Use these commands one by one for Podman setup :-
 $ sudo apt update
 ~~~
 The above command is a necessary step before performing actual package installations or upgrades (sudo apt upgrade), as it ensures that your system has the latest information about available packages and their versions. It helps to keep your system up-to-date with the latest software releases, security patches, and bug fixes
-
+~~~
 $ sudo apt install  podman
-
+~~~
 (output of abe command is given below)
 ``````
 Reading package lists... Done
@@ -96,9 +96,9 @@ First we will check in our /registries.conf file that we have       “ unqualif
  line or not, like you can see in the given image below
 
 #### We will use the command :-
-
+~~~
 $ sudo vim /etc/containers/registries.conf
-
+~~~
 (the output of this command is given below)
 ``````
 #
@@ -147,8 +147,9 @@ unqualified-search-registries = ["docker.io", "quay.io"]
 #
 #### Now we will pull image for grafana with command
  ``````
-
+~~~
 $ podman pull  docker.io/grafana/grafana  
+~~~
 ``````
 Trying to pull docker.io/grafana/grafana:latest...
 Getting image source signatures
@@ -169,8 +170,9 @@ Storing signatures
 ``````
 
 Then we will run the container with image 
-
+~~~
 $ podman run -d -p 3001:3000  --name grafana docker.io/grafana/grafana 
+~~~
 ``````
 b542b96d48dff1ae8ed73490d3249bc2b4adb0397965e2fb4173f21e51812a1a
 ``````
@@ -198,31 +200,37 @@ A container image is like a blueprint or package containing all the necessary co
 A Dockerfile or Container File is a text file used to define the instructions and configuration needed to build a custom container image. It serves as a blueprint for creating a container image with all the dependencies and settings required for a specific application or service. Dockerfiles and Containerfiles are commonly used in containerization technologies like Docker and Podman.
 
 First we will make a directory with the name docker. To make a directory we have to use a command given below
-
+~~~
 $ mkdir docker
-
+~~~
 Than we will change directory with command given below
-
+~~~
 $ cd docker
+~~~
 
 Than will make a file in docker directory with name dockerfile, the is command below 
- 
+~~~
 $ touch Dockerfile
+~~~
 
 After that we will make a prometheus configuration file with name prometheus.yml
-
+~~~
 $ touch prometheus.yml
+~~~
 
 Than we will see that dockerfile is made or not with the help of the command given below :- 
-
-$ ls 
+~~~
+$ ls
+~~~
+ 
 ``````
 Dockerfile    prometheus.yml  
 ``````
 
 As we can see in previous image that we have a file named dockerfile and a configuration file with the name prometheus.yml, after this we will go inside the dockerfile to write instructions  with the help of command given below
-
-$ vim Dockerfile 
+~~~
+$ vim Dockerfile
+~~~ 
 (to write something in dockerfile we will first press ‘I’ on the key with the help of this we can insert or write anything in any file)
 
 
@@ -252,8 +260,10 @@ THe CMD instruction specifies the custom command to start prometheus with our cu
 
 
 After that we will build an image with name prom by the help of command given below 
-
+~~~
 $ podman build -t prom .
+~~~
+
 ``````
 STEP 1/4: FROM prom/prometheus:latest
 ✔ docker.io/prom/prometheus:latest
@@ -293,8 +303,10 @@ In this command :
 ‘-t’ is to give an optional tag and image name,  myprometheus is the name of the image, ‘.’ is used to tell us to take image information from the current directory(means myapp directory) where we are doing all the work.
 
  We can see the details of image with the command 
-
-$ podman images 
+~~~
+$ podman images
+~~~
+ 
 ``````
 REPOSITORY                    TAG         IMAGE ID      CREATED             SIZE
 localhost/prom                latest      05f26d548a48  About a minute ago  248 MB
