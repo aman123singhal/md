@@ -60,9 +60,9 @@ Container Management: Podman supports container management tasks, including crea
 Now here are steps to install Podman in your linux distribution.
 
 Use these commands one by one for Podman setup :-
-
+~~~
 $ sudo apt update
-
+~~~
 The above command is a necessary step before performing actual package installations or upgrades (sudo apt upgrade), as it ensures that your system has the latest information about available packages and their versions. It helps to keep your system up-to-date with the latest software releases, security patches, and bug fixes
 
 $ sudo apt install  podman
