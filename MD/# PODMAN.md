@@ -67,7 +67,7 @@ The above command is a necessary step before performing actual package installat
 ~~~
 $ sudo apt install  podman
 ~~~
-(output of abe command is given below)
+(output of above command is given below)
 ``````
 Reading package lists... Done
 Building dependency tree... Done
