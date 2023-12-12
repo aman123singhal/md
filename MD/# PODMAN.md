@@ -300,7 +300,7 @@ As we can see in the above output that the image is successfully made with the t
 
 In this command : 
 ‘build’ is used to build the image 
-‘-t’ is to give an optional tag and image name,  myprometheus is the name of the image, ‘.’ is used to tell us to take image information from the current directory(means myapp directory) where we are doing all the work.
+‘-t’ is to give an optional tag and image name,  prom is the name of the image, ‘.’ is used to tell us to take image information from the current directory(means myapp directory) where we are doing all the work.
 
  We can see the details of image with the command 
 ~~~
