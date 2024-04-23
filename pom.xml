@@ -1,1 +1,3 @@
-
+<properties>
+  <sonar.projectKey>Portal</sonar.projectKey>
+</properties>
